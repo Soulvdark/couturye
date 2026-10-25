@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const Header = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -19,11 +19,8 @@ export const Header = () => {
           <a href="#about" className="hover:text-neutral-500 transition-colors">
             01 / О себе
           </a>
-          <a
-            href="#works"
-            className="hover:text-neutral-500 transition-colors flex items-center gap-2"
-          >
-            <span>02 / Лукбук работ</span>
+          <a href="#works" className="hover:text-neutral-500 transition-colors">
+            02 / Лукбук работ
           </a>
           <a
             href="#services"
