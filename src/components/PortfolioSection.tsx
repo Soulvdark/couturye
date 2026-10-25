@@ -28,6 +28,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 sm:mb-14 border-b border-neutral-300 pb-6 gap-5">
         <div>
           <div className="flex items-center gap-2.5 mb-2">
+
             <span className="text-[10px] font-mono uppercase tracking-[0.24em] text-neutral-500">
               {isColorAwakened
                 ? "РАЗДЕЛ 02 // ЖИВАЯ ПАЛИТРА РАБОТ"

@@ -90,7 +90,7 @@ export const App: React.FC = () => {
       }`}
     >
       <IntroOverlay />
-      <Header isColorAwakened={isColorAwakened} />
+      <Header />
       <HeroAndAbout isColorAwakened={isColorAwakened} />
 
       <PortfolioSection
