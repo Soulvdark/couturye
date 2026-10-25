@@ -28,15 +28,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 sm:mb-14 border-b border-neutral-300 pb-6 gap-5">
         <div>
           <div className="flex items-center gap-2.5 mb-2">
-            <span
-              className={`inline-block w-2.5 h-2.5 rounded-full transition-colors duration-700 ${
-                isColorAwakened ? "bg-red-700 animate-pulse" : "bg-neutral-400"
-              }`}
-            />
             <span className="text-[10px] font-mono uppercase tracking-[0.24em] text-neutral-500">
               {isColorAwakened
-                ? "COLOR AWAKENED // ЖИВАЯ ПАЛИТРА РАБОТ"
-                : "SECTION 02 // EDITORIAL LOOKBOOK"}
+                ? "РАЗДЕЛ 02 // ЖИВАЯ ПАЛИТРА РАБОТ"
+                : "РАЗДЕЛ 02 // ЛУКБУК И ПОРТФОЛИО"}
             </span>
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl tracking-tight font-normal">
@@ -75,7 +70,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           <article
             key={work.id}
             onClick={() => onSelectWork(idx)}
-            className={`group cursor-pointer bg-white p-4 sm:p-6 border border-neutral-300 shadow-2xs hover:shadow-xl transition-all duration-500 ${work.colSpanClass} ${
+            className={`group cursor-pointer bg-white p-4 sm:p-6 border border-neutral-300 shadow-sm hover:shadow-xl transition-all duration-500 ${work.colSpanClass} ${
               work.offsetClass || ""
             }`}
           >
@@ -92,10 +87,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                 className={`w-full h-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-[1.03] ${
                   isColorAwakened
                     ? "grayscale-0 contrast-100"
-                    : "grayscale contrast-115"
+                    : "grayscale contrast-125"
                 }`}
               />
-              <div className="absolute bottom-3 right-3 bg-white/95 px-3 py-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-neutral-900 border border-neutral-200 shadow-xs">
+              <div className="absolute bottom-3 right-3 bg-white/95 px-3 py-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-neutral-900 border border-neutral-200 shadow-sm">
                 [ Разбор образа + ]
               </div>
             </div>

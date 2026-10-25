@@ -82,11 +82,14 @@ export const Modals: React.FC<ModalsProps> = ({
 
   return (
     <>
-      {/* 1. МОДАЛКА РАЗБОРА РАБОТЫ */}
+      {/* 1. МОДАЛКА РАЗБОРА ОБРАЗА */}
       {activeWorkModal && activeWorkIndex !== null && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeWorkModal.title}
           onClick={() => setActiveWorkIndex(null)}
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 lg:p-6"
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 lg:p-6"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -94,13 +97,13 @@ export const Modals: React.FC<ModalsProps> = ({
           >
             <div className="flex md:hidden items-center justify-between px-4 py-3 bg-white border-b border-neutral-200 text-[10px] font-mono uppercase tracking-widest shrink-0">
               <span>
-                {activeWorkModal.index} ({activeWorkIndex + 1} /{" "}
+                {activeWorkModal.index} ({activeWorkIndex + 1} из{" "}
                 {visibleWorks.length})
               </span>
               <button
                 type="button"
                 onClick={() => setActiveWorkIndex(null)}
-                className="px-2.5 py-1 bg-neutral-900 text-white"
+                className="px-2.5 py-1 bg-neutral-900 text-white cursor-pointer"
               >
                 Закрыть ×
               </button>
@@ -124,7 +127,7 @@ export const Modals: React.FC<ModalsProps> = ({
                             visibleWorks.length,
                         )
                       }
-                      className="pointer-events-auto px-3 py-1.5 bg-white/90 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
+                      className="pointer-events-auto px-3 py-1.5 bg-white/95 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
                     >
                       ← Пред.
                     </button>
@@ -135,7 +138,7 @@ export const Modals: React.FC<ModalsProps> = ({
                           (activeWorkIndex + 1) % visibleWorks.length,
                         )
                       }
-                      className="pointer-events-auto px-3 py-1.5 bg-white/90 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
+                      className="pointer-events-auto px-3 py-1.5 bg-white/95 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
                     >
                       След. →
                     </button>
@@ -147,7 +150,7 @@ export const Modals: React.FC<ModalsProps> = ({
                 <div>
                   <div className="hidden md:flex justify-between items-center text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-400 border-b border-neutral-200 pb-3">
                     <span>
-                      {activeWorkModal.index} — {activeWorkIndex + 1}/
+                      {activeWorkModal.index} - {activeWorkIndex + 1} из{" "}
                       {visibleWorks.length}
                     </span>
                     <button
@@ -210,11 +213,14 @@ export const Modals: React.FC<ModalsProps> = ({
         </div>
       )}
 
-      {/* 2. МОДАЛКА ОРИГИНАЛА ОТЗЫВА */}
+      {/* 2. МОДАЛКА ОТЗЫВА */}
       {activeReviewModal && activeReviewIndex !== null && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeReviewModal.author}
           onClick={() => setActiveReviewIndex(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 lg:p-6"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 lg:p-6"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -222,13 +228,13 @@ export const Modals: React.FC<ModalsProps> = ({
           >
             <div className="flex md:hidden items-center justify-between px-4 py-3 bg-white border-b border-neutral-200 text-[10px] font-mono uppercase tracking-widest shrink-0">
               <span>
-                {activeReviewModal.code} ({activeReviewIndex + 1}/
+                {activeReviewModal.code} ({activeReviewIndex + 1} из{" "}
                 {visibleReviews.length})
               </span>
               <button
                 type="button"
                 onClick={() => setActiveReviewIndex(null)}
-                className="px-2.5 py-1 bg-neutral-900 text-white"
+                className="px-2.5 py-1 bg-neutral-900 text-white cursor-pointer"
               >
                 Закрыть ×
               </button>
@@ -252,7 +258,7 @@ export const Modals: React.FC<ModalsProps> = ({
                             visibleReviews.length,
                         )
                       }
-                      className="pointer-events-auto px-3 py-1.5 bg-white/90 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
+                      className="pointer-events-auto px-3 py-1.5 bg-white/95 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
                     >
                       ← Пред.
                     </button>
@@ -263,7 +269,7 @@ export const Modals: React.FC<ModalsProps> = ({
                           (activeReviewIndex + 1) % visibleReviews.length,
                         )
                       }
-                      className="pointer-events-auto px-3 py-1.5 bg-white/90 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
+                      className="pointer-events-auto px-3 py-1.5 bg-white/95 hover:bg-white text-neutral-900 text-[10px] font-mono uppercase tracking-widest shadow-md cursor-pointer"
                     >
                       След. →
                     </button>

@@ -8,14 +8,14 @@ export const Header: React.FC<HeaderProps> = ({ isColorAwakened }) => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/80 border-b border-neutral-300/90 transition-colors">
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/85 border-b border-neutral-300/90 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#top" className="flex flex-col shrink-0">
-          <span className="font-serif text-base sm:text-xl tracking-[0.14em] uppercase text-neutral-900">
-            Polina Shurupova
+          <span className="font-serif text-base sm:text-xl tracking-[0.12em] uppercase text-neutral-900">
+            Полина Шурупова
           </span>
-          <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.2em] text-neutral-500 -mt-0.5">
-            Stylist &amp; Costume Historian
+          <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.18em] text-neutral-500 -mt-0.5">
+            Стилист и историк моды
           </span>
         </a>
 
@@ -28,11 +28,6 @@ export const Header: React.FC<HeaderProps> = ({ isColorAwakened }) => {
             className="hover:text-neutral-500 transition-colors flex items-center gap-2"
           >
             <span>02 / Лукбук работ</span>
-            <span
-              className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                isColorAwakened ? "bg-red-700 scale-125" : "bg-neutral-400"
-              }`}
-            />
           </a>
           <a
             href="#services"
@@ -44,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ isColorAwakened }) => {
             href="#reviews"
             className="hover:text-neutral-500 transition-colors"
           >
-            04 / Истории клиентов
+            04 / Отзывы клиентов
           </a>
         </nav>
 
@@ -60,7 +55,9 @@ export const Header: React.FC<HeaderProps> = ({ isColorAwakened }) => {
         <button
           type="button"
           onClick={() => setMobileNavOpen((v) => !v)}
-          className="lg:hidden px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest border border-neutral-400 bg-white"
+          aria-expanded={mobileNavOpen}
+          aria-label="Открыть меню навигации"
+          className="lg:hidden px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest border border-neutral-400 bg-white cursor-pointer"
         >
           {mobileNavOpen ? "Закрыть ×" : "Меню ≡"}
         </button>

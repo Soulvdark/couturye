@@ -34,13 +34,13 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
 
   return (
     <>
-      {/* БЛОК 4. УСЛУГИ И ПРАЙС — ПОЛНЫЕ ТЕКСТЫ ПО ДОКУМЕНТУ ПОЛИНЫ */}
+      {/* БЛОК 4. УСЛУГИ И ПРАЙС */}
       <section
         id="services"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
       >
         <div className="border-t border-b border-neutral-300 py-3.5 mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.22em] text-neutral-500">
-          <span>SECTION 03 // SERVICE GUIDE &amp; INVESTMENT</span>
+          <span>РАЗДЕЛ 03 // УСЛУГИ И СТОИМОСТЬ РАБОТЫ</span>
           <span>ФОРМАТ: ОНЛАЙН / ОФЛАЙН</span>
         </div>
 
@@ -81,19 +81,16 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
                       </span>
                     </div>
 
-                    {/* Вводный вопрос / лид-абзац */}
                     <p className="font-serif italic text-base sm:text-lg text-neutral-900 leading-snug mb-3">
                       {service.leadQuestion}
                     </p>
 
-                    {/* Основное описание процесса */}
                     <div className="space-y-2.5 text-xs sm:text-sm text-neutral-700 leading-relaxed mb-5">
                       {service.paragraphs.map((p, idx) => (
                         <p key={idx}>{p}</p>
                       ))}
                     </div>
 
-                    {/* Список «Что вы получите» */}
                     <div className="bg-white/90 border border-neutral-200 p-4 sm:p-5 mb-5">
                       <strong className="font-mono uppercase text-[10px] tracking-[0.16em] text-neutral-800 block mb-2.5">
                         {service.benefitsTitle}
@@ -102,7 +99,7 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
                         {service.benefitsList.map((benefit, bIdx) => (
                           <li key={bIdx} className="flex items-start gap-2.5">
                             <span className="font-mono text-neutral-400 shrink-0">
-                              —
+                              -
                             </span>
                             <span>{benefit}</span>
                           </li>
@@ -132,7 +129,7 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
           <div className="hidden lg:block lg:col-span-4 sticky top-24">
             <div className="bg-white p-5 border border-neutral-300 shadow-md">
               <div className="flex justify-between text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-400 mb-3">
-                <span>SERVICE PREVIEW</span>
+                <span>ПРЕВЬЮ УСЛУГИ</span>
                 <span>/{activeServicePreview.index}</span>
               </div>
               <div className="aspect-[4/5] overflow-hidden bg-neutral-100 mb-4">
@@ -154,7 +151,7 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
         </div>
       </section>
 
-      {/* БЛОК 5. ПОЛНЫЙ АРХИВ ВСЕХ 13 ОТЗЫВОВ КЛИЕНТОВ */}
+      {/* БЛОК 5. ОТЗЫВЫ И ИСТОРИИ КЛИЕНТОВ */}
       <section
         id="reviews"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
@@ -162,7 +159,7 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 border-b border-neutral-300 pb-6 gap-5">
           <div>
             <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-neutral-500 block mb-2">
-              SECTION 04 // CLIENT STORIES &amp; ARCHIVE NOTES
+              РАЗДЕЛ 04 // ОТЗЫВЫ И ИСТОРИИ КЛИЕНТОВ
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl tracking-tight font-normal">
               Отзывы и истории клиентов
@@ -200,7 +197,7 @@ export const ServicesAndReviews: React.FC<ServicesAndReviewsProps> = ({
             <article
               key={review.id}
               onClick={() => onSelectReview(idx)}
-              className="group cursor-pointer bg-white border border-neutral-300 p-5 sm:p-7 flex flex-col justify-between shadow-2xs hover:shadow-xl transition-all duration-300"
+              className="group cursor-pointer bg-white border border-neutral-300 p-5 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300"
             >
               <div>
                 <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 border-b border-neutral-200 pb-3 mb-4">

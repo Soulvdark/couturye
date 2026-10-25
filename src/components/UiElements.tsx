@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { PHOTOS } from "../data/siteData";
+import React, { useState, useEffect, useMemo } from 'react';
+import { PHOTOS } from '../data/siteData';
 
-export const SmartImage: React.FC<
-  React.ImgHTMLAttributes<HTMLImageElement>
-> = ({ src, alt, ...props }) => {
-  // Автоматически очищаем пути от '/public/' и ведущих слэшей,
-  // чтобы на GitHub Pages путь всегда вел внутрь репозитория /Version-1/
-  const resolvedSrc = React.useMemo(() => {
-    if (!src) return "";
-    const cleanPath = src.replace(/^\/?public\//, "").replace(/^\//, "");
+export const SmartImage: React.FC<React.ImgHTMLAttributes<HTMLImageElement>> = ({ src, alt, ...props }) => {
+  const [hasTriedFallback, setHasTriedFallback] = useState(false);
+
+  const resolvedSrc = useMemo(() => {
+    if (!src) return '';
+    if (src.startsWith('http') || src.startsWith('data:')) return src;
+    const cleanPath = src.replace(/^\/?public\//, '').replace(/^\//, '');
     return `./${cleanPath}`;
   }, [src]);
 
-  return <img src={resolvedSrc} alt={alt || ""} {...props} />;
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    if (hasTriedFallback) return;
+    setHasTriedFallback(true);
+    const target = e.currentTarget;
+    if (src && target.src !== src) {
+      target.src = src;
+    }
+  };
+
+  return <img src={resolvedSrc} alt={alt || ''} onError={handleError} {...props} />;
 };
 
-export const BinderClip: React.FC<{ className?: string }> = ({
-  className = "",
-}) => (
+export const BinderClip: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg
     viewBox="0 0 44 68"
     fill="none"
@@ -36,9 +42,7 @@ export const BinderClip: React.FC<{ className?: string }> = ({
   </svg>
 );
 
-export const PaperClip: React.FC<{ className?: string }> = ({
-  className = "",
-}) => (
+export const PaperClip: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg
     viewBox="0 0 28 76"
     fill="none"
@@ -62,10 +66,7 @@ export const ArchiveRingsDivider: React.FC = () => (
   >
     <div className="absolute inset-x-0 top-1/2 h-px bg-neutral-300" />
     {[0, 1, 2].map((idx) => (
-      <div
-        key={idx}
-        className="relative z-10 flex flex-col items-center px-3 sm:px-4"
-      >
+      <div key={idx} className="relative z-10 flex flex-col items-center px-3 sm:px-4">
         <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border border-neutral-500 bg-neutral-200 shadow-inner" />
         <div className="w-1 sm:w-1.5 h-7 sm:h-9 bg-gradient-to-b from-neutral-800 via-neutral-400 to-neutral-800 rounded-full -my-1 shadow-sm" />
         <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border border-neutral-500 bg-neutral-200 shadow-inner" />
@@ -75,58 +76,54 @@ export const ArchiveRingsDivider: React.FC = () => (
 );
 
 export const IntroOverlay: React.FC = () => {
-  const [introState, setIntroState] = useState<
-    "holding" | "tossing" | "hidden"
-  >("holding");
+  const [introState, setIntroState] = useState<'holding' | 'tossing' | 'hidden'>('holding');
 
   useEffect(() => {
-    const tossTimer = window.setTimeout(() => setIntroState("tossing"), 1000);
-    const hideTimer = window.setTimeout(() => setIntroState("hidden"), 1750);
+    const tossTimer = window.setTimeout(() => setIntroState('tossing'), 1000);
+    const hideTimer = window.setTimeout(() => setIntroState('hidden'), 1750);
     return () => {
       window.clearTimeout(tossTimer);
       window.clearTimeout(hideTimer);
     };
   }, []);
 
-  if (introState === "hidden") return null;
+  if (introState === 'hidden') return null;
 
   return (
     <div
-      onClick={() => setIntroState("hidden")}
+      onClick={() => setIntroState('hidden')}
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#E8E8E6] px-6 transition-all duration-700 ease-out cursor-pointer ${
-        introState === "tossing"
-          ? "-translate-y-full opacity-0"
-          : "translate-y-0 opacity-100"
+        introState === 'tossing' ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
       }`}
     >
-      <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-neutral-500 mb-6 text-center">
-        PERSONAL STYLING &amp; FASHION HISTORY ARCHIVE
+      <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-neutral-500 mb-6 text-center">
+        ПЕРСОНАЛЬНЫЙ СТАЙЛИНГ И ИСТОРИЯ КОСТЮМА
       </div>
 
-      <div className="relative w-56 sm:w-68 aspect-[4/5]">
+      <div className="relative w-56 sm:w-64 aspect-[4/5]">
         <div className="absolute inset-0 bg-white p-2.5 border border-neutral-300 shadow-lg rotate-3 scale-95">
           <SmartImage
             src={PHOTOS.portraitTopDown}
-            alt=""
+            alt="Архив образов Полины Шуруповой"
             className="w-full h-full object-cover grayscale contrast-125"
           />
         </div>
 
         <div
           className={`relative z-10 w-full h-full bg-white p-3 border border-neutral-300 shadow-2xl transition-all duration-700 ${
-            introState === "tossing"
-              ? "-translate-y-32 -rotate-12 scale-105 opacity-0"
-              : "translate-y-0 -rotate-2 scale-100 opacity-100"
+            introState === 'tossing'
+              ? '-translate-y-32 -rotate-12 scale-105 opacity-0'
+              : 'translate-y-0 -rotate-2 scale-100 opacity-100'
           }`}
         >
           <SmartImage
             src={PHOTOS.detailHandBagJjoir}
-            alt="Polina Shurupova Archive"
+            alt="Полина Шурупова - детали стиля"
             className="w-full h-full object-cover grayscale contrast-125"
           />
           <div className="mt-2 flex justify-between text-[9px] font-mono uppercase tracking-widest text-neutral-500">
-            <span>OBJECT N° 01</span>
-            <span>JJOIR / ARCHIVE</span>
+            <span>КАДР № 01</span>
+            <span>ДЕТАЛИ И СТИЛЬ</span>
           </div>
         </div>
       </div>
