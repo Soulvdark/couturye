@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
-interface HeaderProps {
-  isColorAwakened: boolean;
-}
-
-export const Header: React.FC<HeaderProps> = ({ isColorAwakened }) => {
+export const Header = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
